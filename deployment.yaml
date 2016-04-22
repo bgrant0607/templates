@@ -1,0 +1,49 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  # Change this name to something unique within the chosen namespace
+  name: deployment-name
+  # these labels can be applied automatically 
+  # from the labels in the pod template if not set
+  # labels:
+  #   app: myapp
+  #   tier: frontend
+spec:
+  # 1 replica is the default
+  # modify it according to your case
+  # replicas: 1
+  # selector can be applied automatically 
+  # from the labels in the pod template if not set
+  # selector:
+  #   matchLabels:
+  #     app: myapp
+  #     tier: frontend
+  template:
+    metadata:
+      labels:
+        # Change these labels to characterize your application.
+        # The set of labels should be unique within the namespace.
+        app: myapp
+        tier: frontend
+    spec:
+      containers:
+      # Container name and image are required
+      - name: hello
+        image: nginx
+        #command: ["/command"]
+        #args: ["one","two"]
+        #env:
+        #- name: TZ
+        #  value: EST
+        #resources:
+        #  requests:
+        #    cpu: 100m
+        #    memory: 100Mi
+        ports:
+        - containerPort: 80
+        #volumeMounts:
+        #- mountPath: /data
+        #  name: www-data
+      #volumes:
+      #- name: www-data
+      #  emptyDir: {}
